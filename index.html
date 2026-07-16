@@ -37,6 +37,17 @@
     border-radius:12px;padding:20px;margin-bottom:52px;flex-wrap:wrap;}
   .digrow img{width:220px;max-width:60vw;image-rendering:auto;border-radius:8px;}
   .digrow p{margin:0;color:#cfc6b4;font-size:14.5px;flex:1;min-width:220px;}
+  ol.loop{list-style:none;counter-reset:st;padding:0;margin:0 0 52px;display:grid;gap:10px;}
+  ol.loop li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px 14px 54px;position:relative;color:#cfc6b4;font-size:14.5px;}
+  ol.loop li::before{counter-increment:st;content:counter(st);position:absolute;left:16px;top:14px;width:26px;height:26px;
+    border-radius:50%;background:linear-gradient(180deg,#e0c470,#a8802e);color:#2a1e08;font-weight:800;
+    display:flex;align-items:center;justify-content:center;font-size:14px;border:1px solid #6b5320;}
+  ol.loop b{color:var(--acc);}
+  .chars{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:52px;}
+  .char{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center;}
+  .char img{width:150px;height:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.5));}
+  .char b{display:block;color:var(--acc);margin:10px 0 4px;font-size:16px;}
+  .char span{color:#cfc6b4;font-size:13.5px;line-height:1.6;}
   footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--mut);font-size:13px;}
   footer a{color:var(--brass);text-decoration:none;margin:0 10px;}
   footer a:hover{color:var(--acc);}
@@ -62,6 +73,23 @@
     <div class="feat"><b>🌑 Die Leere</b><span>Unter dem Magma wird es violett und still. Opa hat gewarnt: „Grabt nicht weiter." Also gut, dass du es tust.</span></div>
     <div class="feat"><b>🐭 Der Maulwurf-Kiosk</b><span>Tief unten verkauft ein Maulwurf Sprit aus der Gießkanne. Wucherpreise. Der Kaffee ist es wert.</span></div>
     <div class="feat"><b>🚨 Steve schleppt ab</b><span>Tank leer? Steve kommt. Und stellt eine sehr detaillierte Rechnung. Mittellose schleppt er gratis — Mitleids-Rabatt.</span></div>
+  </div>
+
+  <h2>So spielt es sich</h2>
+  <ol class="loop">
+    <li><b>⛏️ Grab dich ein.</b> Halte nach unten oder zur Seite — der Bohrer frisst sich durchs Erdreich, Tunnel für Tunnel. Was du gräbst, bleibt: Dein Wegenetz wächst mit jeder Fahrt.</li>
+    <li><b>💎 Finde Schätze.</b> Kohle, Silber, Gold, Edelsteine, Dino-Fossilien, kuriose Fundstücke — über 60 verschiedene, tief unten die wertvollsten. Manche stecken in glühenden <b>Erzadern</b>, manche warten seit 1954 auf dich.</li>
+    <li><b>📈 Verkaufe klug.</b> Die Kurse schwanken minütlich. Jetzt verkaufen oder einlagern und zocken? Bauer Ludwig zahlt für Aufträge das Doppelte.</li>
+    <li><b>⛽ Tanke rechtzeitig.</b> Fahren, fliegen, bohren — alles frisst Sprit, und der Tagespreis an Marys Tankstelle kennt keine Gnade. Wer unten liegen bleibt, ruft Steve. Steve stellt Rechnungen.</li>
+    <li><b>🔩 Rüste auf.</b> Bohrer, Tank, Laderaum, Kühlung, Lampe, Hülle — und neun Anbauteile, die sichtbar an die Maschine geschraubt werden.</li>
+    <li><b>🕳️ Und dann: tiefer.</b> Vorbei an Gasblasen und Magma, hinein in die Leere. Ganz unten wartet etwas, das Opa nie erklärt hat.</li>
+  </ol>
+
+  <h2>Die drei vom Hof</h2>
+  <div class="chars">
+    <div class="char"><img src="assets/ludwig.webp" alt="Bauer Ludwig"><b>Ludwig</b><span>Dem gehört der Hof — und die Schulden. Gibt Aufträge, zahlt gut, erzählt zu viel von früher.</span></div>
+    <div class="char"><img src="assets/steve.webp" alt="Abschlepper Steve"><b>Steve</b><span>Schraubt, schweißt, schleppt ab. Nichts davon umsonst. Seine Rechnungen sind Legende.</span></div>
+    <div class="char"><img src="assets/mary.webp" alt="Tankstellen-Mary"><b>Mary</b><span>Wollte längst in Rente. Verkauft Sprit zum Tagespreis und knurrt dazu. Notration gibt's aufs Haus — erzähl's keinem.</span></div>
   </div>
 
   <div class="digrow">
