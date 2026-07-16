@@ -13,6 +13,10 @@
   :root{--bg:#14120f;--card:#1e1b16;--fg:#e8e2d6;--mut:#a29684;--acc:#f5d878;--brass:#c9a45c;--line:#3a342b;}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
+  .langbar{position:absolute;top:14px;right:16px;z-index:5;display:flex;gap:8px;}
+  .langbar button{background:rgba(20,18,15,.55);border:2px solid rgba(255,255,255,.25);border-radius:8px;padding:4px 9px;
+    color:#e8e2d6;font-size:13px;font-weight:700;cursor:pointer;opacity:.75;}
+  .langbar button.act{border-color:var(--acc);opacity:1;box-shadow:0 0 8px rgba(245,216,120,.35);}
   .hero{position:relative;min-height:72vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:48px 20px;overflow:hidden;}
   .hero::before{content:"";position:absolute;inset:0;background:url(assets/hero.webp) center/cover;filter:brightness(.55);z-index:0;}
@@ -48,6 +52,14 @@
   .char img{width:150px;height:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.5));}
   .char b{display:block;color:var(--acc);margin:10px 0 4px;font-size:16px;}
   .char span{color:#cfc6b4;font-size:13.5px;line-height:1.6;}
+  .fb{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:52px;}
+  .fb label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px;}
+  .fb select,.fb textarea,.fb input{width:100%;background:#14120f;border:1px solid var(--line);border-radius:8px;
+    color:var(--fg);padding:10px;font:inherit;font-size:14px;}
+  .fb textarea{min-height:110px;resize:vertical;}
+  .fb button{margin-top:14px;font-size:15px;font-weight:800;color:#2a1e08;background:linear-gradient(180deg,#f0d480,#a8802e);
+    border:2px solid #6b5320;border-radius:10px;padding:11px 26px;cursor:pointer;}
+  .fb .hint{font-size:12px;color:var(--mut);margin-top:8px;}
   footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--mut);font-size:13px;}
   footer a{color:var(--brass);text-decoration:none;margin:0 10px;}
   footer a:hover{color:var(--acc);}
@@ -55,57 +67,175 @@
 </head>
 <body>
 
+<div class="langbar" id="langbar">
+  <button data-l="de">DE</button><button data-l="en">EN</button><button data-l="es">ES</button><button data-l="fr">FR</button>
+</div>
+
 <section class="hero">
   <img class="logo" src="assets/logo.webp" alt="Ludwigs Mine">
-  <div class="tag">Grab dich reich. Rette den Hof.</div>
-  <p class="sub">Bohre über 500 Meter tief, verkaufe deine Funde am lebendigen Erzmarkt zum richtigen Kurs —
+  <div class="tag" data-i="tag">Grab dich reich. Rette den Hof.</div>
+  <p class="sub" data-i="sub">Bohre über 500 Meter tief, verkaufe deine Funde am lebendigen Erzmarkt zum richtigen Kurs —
     und zahle die Hypothek ab, bevor die Dünenbank dich auffrisst. Deutsch · English · Español · Français</p>
-  <a class="play" href="https://www.crazygames.com/game/ludwigs-mine" rel="noopener">▶ Jetzt kostenlos spielen</a>
-  <div class="free">Kostenlos im Browser auf CrazyGames — Desktop &amp; Handy. Bald auch im Google Play Store.</div>
+  <a class="play" href="https://www.crazygames.com/game/ludwigs-mine" rel="noopener" data-i="play">▶ Jetzt kostenlos spielen</a>
+  <div class="free" data-i="free">Kostenlos im Browser auf CrazyGames — Desktop &amp; Handy. Bald auch im Google Play Store.</div>
 </section>
 
 <main>
-  <h2>Was dich unten erwartet</h2>
+  <h2 data-i="h_feat">Was dich unten erwartet</h2>
   <div class="feats">
-    <div class="feat"><b>📉 Lebendiger Erzmarkt</b><span>Kohle, Silber, Gold und Edelsteine schwanken minütlich. Im Aufschwung verkaufen — oder einlagern und auf bessere Kurse zittern.</span></div>
-    <div class="feat"><b>📜 Opas Geheimnis</b><span>10 zerrissene Tagebuchseiten liegen im Dreck. Wer sie ausgräbt, versteht, warum der Hof wirklich verschuldet ist.</span></div>
-    <div class="feat"><b>🔧 Steves Werkstatt</b><span>Neun Anbauteile, die sichtbar an die Maschine geschraubt werden — vom Erzsucher bis zum Bremsfallschirm.</span></div>
-    <div class="feat"><b>🌑 Die Leere</b><span>Unter dem Magma wird es violett und still. Opa hat gewarnt: „Grabt nicht weiter." Also gut, dass du es tust.</span></div>
-    <div class="feat"><b>🐭 Der Maulwurf-Kiosk</b><span>Tief unten verkauft ein Maulwurf Sprit aus der Gießkanne. Wucherpreise. Der Kaffee ist es wert.</span></div>
-    <div class="feat"><b>🚨 Steve schleppt ab</b><span>Tank leer? Steve kommt. Und stellt eine sehr detaillierte Rechnung. Mittellose schleppt er gratis — Mitleids-Rabatt.</span></div>
+    <div class="feat"><b data-i="f1b">📉 Lebendiger Erzmarkt</b><span data-i="f1s">Kohle, Silber, Gold und Edelsteine schwanken minütlich. Im Aufschwung verkaufen — oder einlagern und auf bessere Kurse zittern.</span></div>
+    <div class="feat"><b data-i="f2b">📜 Opas Geheimnis</b><span data-i="f2s">10 zerrissene Tagebuchseiten liegen im Dreck. Wer sie ausgräbt, versteht, warum der Hof wirklich verschuldet ist.</span></div>
+    <div class="feat"><b data-i="f3b">🔧 Steves Werkstatt</b><span data-i="f3s">Neun Anbauteile, die sichtbar an die Maschine geschraubt werden — vom Erzsucher bis zum Bremsfallschirm.</span></div>
+    <div class="feat"><b data-i="f4b">🏺 Vergessene Orte</b><span data-i="f4s">Eine Grabstätte, ein alter Stollen, eine Absturzstelle — irgendwo in deiner Welt, jede nur einmal. Wer sie findet, findet Schätze, die es sonst nirgends gibt.</span></div>
+    <div class="feat"><b data-i="f5b">🐄 Immer was los</b><span data-i="f5s">Muh-steriöse Kühe, ausgebüxte Hühner, Steves Rohrbrüche, Marys Waschpfanne, das Hütchenspiel des Maulwurfs — kleine Spiele, große Momente.</span></div>
+    <div class="feat"><b data-i="f6b">🌑 Die Leere</b><span data-i="f6s">Unter dem Magma wird es violett und still. Opa hat gewarnt: „Grabt nicht weiter." Also gut, dass du es tust.</span></div>
   </div>
 
-  <h2>So spielt es sich</h2>
+  <h2 data-i="h_loop">So spielt es sich</h2>
   <ol class="loop">
-    <li><b>⛏️ Grab dich ein.</b> Halte nach unten oder zur Seite — der Bohrer frisst sich durchs Erdreich, Tunnel für Tunnel. Was du gräbst, bleibt: Dein Wegenetz wächst mit jeder Fahrt.</li>
-    <li><b>💎 Finde Schätze.</b> Kohle, Silber, Gold, Edelsteine, Dino-Fossilien, kuriose Fundstücke — über 60 verschiedene, tief unten die wertvollsten. Manche stecken in glühenden <b>Erzadern</b>, manche warten seit 1954 auf dich.</li>
-    <li><b>📈 Verkaufe klug.</b> Die Kurse schwanken minütlich. Jetzt verkaufen oder einlagern und zocken? Bauer Ludwig zahlt für Aufträge das Doppelte.</li>
-    <li><b>⛽ Tanke rechtzeitig.</b> Fahren, fliegen, bohren — alles frisst Sprit, und der Tagespreis an Marys Tankstelle kennt keine Gnade. Wer unten liegen bleibt, ruft Steve. Steve stellt Rechnungen.</li>
-    <li><b>🔩 Rüste auf.</b> Bohrer, Tank, Laderaum, Kühlung, Lampe, Hülle — und neun Anbauteile, die sichtbar an die Maschine geschraubt werden.</li>
-    <li><b>🕳️ Und dann: tiefer.</b> Vorbei an Gasblasen und Magma, hinein in die Leere. Ganz unten wartet etwas, das Opa nie erklärt hat.</li>
+    <li data-i="l1"><b>⛏️ Grab dich ein.</b> Halte nach unten oder zur Seite — der Bohrer frisst sich durchs Erdreich. Was du gräbst, bleibt: Dein Wegenetz wächst mit jeder Fahrt — und mit Brücken und Steigschienen baust du es aus.</li>
+    <li data-i="l2"><b>💎 Finde Schätze.</b> Über 60 verschiedene Fundstücke, tief unten die wertvollsten. Manche stecken in glühenden Erzadern, manche in vergessenen Orten.</li>
+    <li data-i="l3"><b>📈 Verkaufe klug.</b> Die Kurse schwanken minütlich. Jetzt verkaufen oder einlagern und zocken? Bauer Ludwig zahlt für Aufträge das Doppelte.</li>
+    <li data-i="l4"><b>⛽ Tanke rechtzeitig.</b> Fahren, fliegen, bohren — alles frisst Sprit. Wer unten liegen bleibt, ruft Steve. Steve stellt Rechnungen.</li>
+    <li data-i="l5"><b>🔩 Rüste auf.</b> Bohrer, Tank, Laderaum, Kühlung, Lampe, Hülle — und neun Anbauteile, sichtbar an der Maschine.</li>
+    <li data-i="l6"><b>🕳️ Und dann: tiefer.</b> Durch harte Gesteinsbänder, vorbei an Gasblasen und Magma, hinein in die Leere. Ganz unten wartet etwas, das Opa nie erklärt hat.</li>
   </ol>
 
-  <h2>Die drei vom Hof</h2>
+  <h2 data-i="h_chars">Die drei vom Hof</h2>
   <div class="chars">
-    <div class="char"><img src="assets/ludwig.webp" alt="Bauer Ludwig"><b>Ludwig</b><span>Dem gehört der Hof — und die Schulden. Gibt Aufträge, zahlt gut, erzählt zu viel von früher.</span></div>
-    <div class="char"><img src="assets/steve.webp" alt="Abschlepper Steve"><b>Steve</b><span>Schraubt, schweißt, schleppt ab. Nichts davon umsonst. Seine Rechnungen sind Legende.</span></div>
-    <div class="char"><img src="assets/mary.webp" alt="Tankstellen-Mary"><b>Mary</b><span>Wollte längst in Rente. Verkauft Sprit zum Tagespreis und knurrt dazu. Notration gibt's aufs Haus — erzähl's keinem.</span></div>
+    <div class="char"><img src="assets/ludwig.webp" alt="Bauer Ludwig"><b>Ludwig</b><span data-i="c1">Dem gehört der Hof — und die Schulden. Gibt Aufträge, zahlt gut, erzählt zu viel von früher.</span></div>
+    <div class="char"><img src="assets/steve.webp" alt="Abschlepper Steve"><b>Steve</b><span data-i="c2">Schraubt, schweißt, schleppt ab. Nichts davon umsonst. Seine Rechnungen sind Legende.</span></div>
+    <div class="char"><img src="assets/mary.webp" alt="Tankstellen-Mary"><b>Mary</b><span data-i="c3">Wollte längst in Rente. Verkauft Sprit zum Tagespreis und knurrt dazu. Notration gibt's aufs Haus — erzähl's keinem.</span></div>
   </div>
 
   <div class="digrow">
     <img src="assets/digger.webp" alt="Der Digger mit allen Anbauteilen">
-    <p><b style="color:var(--acc)">Deine Maschine wächst mit.</b><br>
+    <p data-i="dig"><b style="color:var(--acc)">Deine Maschine wächst mit.</b><br>
     Jedes gekaufte Anbauteil ist danach sichtbar am Fahrzeug: Radarschüssel, Magnet-Ausleger, Fallschirm-Bündel,
     Dachgepäck, Federn, Hitzeschild — bis der alte Bulldozer aussieht wie Opas wildester Traum.</p>
+  </div>
+
+  <h2 data-i="h_fb">Feedback, Bugs &amp; Ideen</h2>
+  <div class="fb">
+    <label data-i="fb_type">Worum geht's?</label>
+    <select id="fbType">
+      <option value="Bug" data-i="fb_o1">🐛 Bug gefunden</option>
+      <option value="Idee" data-i="fb_o2">💡 Idee / Verbesserung</option>
+      <option value="Lob" data-i="fb_o3">❤️ Einfach mal Lob</option>
+    </select>
+    <label data-i="fb_msg">Deine Nachricht</label>
+    <textarea id="fbMsg" placeholder="…"></textarea>
+    <button id="fbSend" data-i="fb_send">Abschicken</button>
+    <div class="hint" data-i="fb_hint">Öffnet dein E-Mail-Programm mit fertiger Nachricht an info@janismeyer.de — keine Daten werden auf dieser Seite gespeichert.</div>
   </div>
 </main>
 
 <footer>
   <a href="impressum.html">Impressum</a> ·
-  <a href="datenschutz.html">Datenschutz</a> ·
+  <a href="datenschutz.html" data-i="ft_ds">Datenschutz</a> ·
   <a href="privacy.html">Privacy Policy (EN)</a>
   <div style="margin-top:8px">© 2026 Ludwigs Mine</div>
 </footer>
 
+<script>
+const I18N={
+en:{tag:"Dig yourself rich. Save the farm.",
+sub:"Drill more than 500 meters deep, sell your finds on a living ore market at the right moment — and pay off the mortgage before the Dune Bank eats you alive. Deutsch · English · Español · Français",
+play:"▶ Play free now",free:"Free in your browser on CrazyGames — desktop & mobile. Coming soon to Google Play.",
+h_feat:"What awaits you down there",
+f1b:"📉 A living ore market",f1s:"Coal, silver, gold and gems swing every minute. Sell into the spike — or stash your haul and sweat over better rates.",
+f2b:"📜 Grandpa's secret",f2s:"10 torn journal pages lie in the dirt. Dig them up and learn why the farm is really in debt.",
+f3b:"🔧 Steve's workshop",f3s:"Nine add-on parts, visibly bolted to your machine — from the ore finder to the braking parachute.",
+f4b:"🏺 Forgotten places",f4s:"A pharaoh's tomb, an old mine gallery, a crash site — hidden somewhere in your world, each only once. Their treasures exist nowhere else.",
+f5b:"🐄 Always something going on",f5s:"Moo-sterious cows, escaped hens, Steve's burst pipes, Mary's gold pan, the mole's shell game — small games, big moments.",
+f6b:"🌑 The Void",f6s:"Below the magma it turns violet and silent. Grandpa warned: \"Don't dig further.\" Good thing you will.",
+h_loop:"How it plays",
+l1:"<b>⛏️ Dig in.</b> Hold down or sideways — the drill eats through the ground. What you dig stays: your tunnel network grows with every run — and bridges and climbing rails let you build it out.",
+l2:"<b>💎 Find treasure.</b> Over 60 different finds, the most valuable ones deep down. Some sit in glowing ore veins, some in forgotten places.",
+l3:"<b>📈 Sell smart.</b> Prices swing every minute. Sell now, or stash and gamble? Farmer Ludwig pays double for his daily wishes.",
+l4:"<b>⛽ Refuel in time.</b> Driving, flying, drilling — everything burns fuel. Stranded below? Call Steve. Steve writes invoices.",
+l5:"<b>🔩 Upgrade.</b> Drill, tank, cargo, cooling, lamp, hull — plus nine add-on parts, visible on your machine.",
+l6:"<b>🕳️ And then: deeper.</b> Through hard rock bands, past gas pockets and magma, into the Void. At the very bottom waits something Grandpa never explained.",
+h_chars:"The three from the farm",
+c1:"Owns the farm — and the debt. Hands out jobs, pays well, talks too much about the old days.",
+c2:"Wrenches, welds, tows. None of it for free. His invoices are legend.",
+c3:"Should have retired ages ago. Sells fuel at the daily rate, growling. Emergency rations on the house — don't tell anyone.",
+dig:"<b style='color:var(--acc)'>Your machine grows with you.</b><br>Every add-on you buy shows up on the vehicle: radar dish, magnet arm, parachute pack, roof rack, springs, heat shield — until the old bulldozer looks like Grandpa's wildest dream.",
+h_fb:"Feedback, bugs & ideas",fb_type:"What's it about?",fb_o1:"🐛 Found a bug",fb_o2:"💡 Idea / improvement",fb_o3:"❤️ Just some love",
+fb_msg:"Your message",fb_send:"Send",
+fb_hint:"Opens your email app with a ready-made message to info@janismeyer.de — no data is stored on this site.",ft_ds:"Privacy (DE)"},
+es:{tag:"Excava hasta hacerte rico. Salva la granja.",
+sub:"Perfora a más de 500 metros, vende tus hallazgos en un mercado vivo en el momento justo — y paga la hipoteca antes de que el banco te devore. Deutsch · English · Español · Français",
+play:"▶ Juega gratis",free:"Gratis en tu navegador en CrazyGames — PC y móvil. Pronto en Google Play.",
+h_feat:"Lo que te espera ahí abajo",
+f1b:"📉 Un mercado de minerales vivo",f1s:"Carbón, plata, oro y gemas fluctúan cada minuto. Vende en la subida — o almacena y suda esperando mejores precios.",
+f2b:"📜 El secreto del abuelo",f2s:"10 páginas rotas de su diario yacen en la tierra. Desentiérralas y sabrás por qué la granja está endeudada.",
+f3b:"🔧 El taller de Steve",f3s:"Nueve accesorios que se atornillan visiblemente a tu máquina — del buscador de menas al paracaídas de freno.",
+f4b:"🏺 Lugares olvidados",f4s:"Una tumba, una galería antigua, un lugar de impacto — escondidos en tu mundo, cada uno una sola vez. Sus tesoros no existen en ningún otro sitio.",
+f5b:"🐄 Siempre pasa algo",f5s:"Vacas muu-steriosas, gallinas fugadas, tuberías rotas, la batea de Mary, el trile del topo — juegos pequeños, momentos grandes.",
+f6b:"🌑 El Vacío",f6s:"Bajo el magma todo se vuelve violeta y silencioso. El abuelo avisó: «No sigáis cavando». Menos mal que tú sí.",
+h_loop:"Así se juega",
+l1:"<b>⛏️ Excava.</b> Mantén abajo o hacia el lado — el taladro devora la tierra. Lo que cavas, queda: tu red de túneles crece — y con puentes y rieles la amplías.",
+l2:"<b>💎 Encuentra tesoros.</b> Más de 60 hallazgos distintos, los más valiosos bien abajo. Algunos en vetas brillantes, otros en lugares olvidados.",
+l3:"<b>📈 Vende con cabeza.</b> Los precios cambian cada minuto. ¿Vender ya o almacenar y apostar? El granjero Ludwig paga el doble por sus encargos.",
+l4:"<b>⛽ Reposta a tiempo.</b> Conducir, volar, taladrar — todo gasta combustible. ¿Tirado abajo? Llama a Steve. Steve pasa factura.",
+l5:"<b>🔩 Mejora.</b> Taladro, tanque, carga, refrigeración, lámpara, casco — y nueve accesorios visibles en tu máquina.",
+l6:"<b>🕳️ Y luego: más hondo.</b> A través de bandas de roca dura, entre bolsas de gas y magma, hacia el Vacío. Al fondo espera algo que el abuelo nunca explicó.",
+h_chars:"Los tres de la granja",
+c1:"Suya es la granja — y la deuda. Da encargos, paga bien y habla demasiado de los viejos tiempos.",
+c2:"Atornilla, suelda, remolca. Nada gratis. Sus facturas son leyenda.",
+c3:"Debería estar jubilada. Vende combustible al precio del día, gruñendo. La ración de emergencia va por la casa — no lo cuentes.",
+dig:"<b style='color:var(--acc)'>Tu máquina crece contigo.</b><br>Cada accesorio comprado se ve en el vehículo: antena de radar, brazo magnético, paracaídas, baca, muelles, escudo térmico — hasta que el viejo bulldozer parece el sueño más loco del abuelo.",
+h_fb:"Comentarios, bugs e ideas",fb_type:"¿De qué se trata?",fb_o1:"🐛 Encontré un bug",fb_o2:"💡 Idea / mejora",fb_o3:"❤️ Solo un cumplido",
+fb_msg:"Tu mensaje",fb_send:"Enviar",
+fb_hint:"Abre tu correo con un mensaje listo para info@janismeyer.de — esta página no guarda ningún dato.",ft_ds:"Privacidad (DE)"},
+fr:{tag:"Creuse jusqu'à la richesse. Sauve la ferme.",
+sub:"Fore à plus de 500 mètres, vends tes trouvailles sur un marché vivant au bon moment — et rembourse l'hypothèque avant que la banque ne te dévore. Deutsch · English · Español · Français",
+play:"▶ Jouer gratuitement",free:"Gratuit dans le navigateur sur CrazyGames — PC et mobile. Bientôt sur Google Play.",
+h_feat:"Ce qui t'attend en bas",
+f1b:"📉 Un marché du minerai vivant",f1s:"Charbon, argent, or et gemmes fluctuent chaque minute. Vends au sommet — ou stocke et espère de meilleurs cours.",
+f2b:"📜 Le secret de grand-père",f2s:"10 pages déchirées de son journal traînent dans la terre. Déterre-les et comprends pourquoi la ferme est endettée.",
+f3b:"🔧 L'atelier de Steve",f3s:"Neuf accessoires boulonnés visiblement sur ta machine — du détecteur de minerai au parachute de freinage.",
+f4b:"🏺 Lieux oubliés",f4s:"Une tombe, une vieille galerie, un site de crash — cachés dans ton monde, chacun une seule fois. Leurs trésors n'existent nulle part ailleurs.",
+f5b:"🐄 Toujours de l'action",f5s:"Vaches meuh-stérieuses, poules en fuite, tuyaux éclatés, la batée de Mary, le bonneteau de la taupe — petits jeux, grands moments.",
+f6b:"🌑 Le Vide",f6s:"Sous le magma, tout devient violet et silencieux. Grand-père a prévenu : « Ne creusez pas plus loin. » Heureusement que tu le fais.",
+h_loop:"Comment on joue",
+l1:"<b>⛏️ Creuse.</b> Maintiens vers le bas ou le côté — la foreuse dévore la terre. Ce que tu creuses reste : ton réseau grandit — et ponts et rails d'escalade l'améliorent.",
+l2:"<b>💎 Trouve des trésors.</b> Plus de 60 trouvailles, les plus précieuses tout en bas. Certaines dans des filons lumineux, d'autres dans des lieux oubliés.",
+l3:"<b>📈 Vends malin.</b> Les cours changent chaque minute. Vendre maintenant ou stocker et parier ? Le fermier Ludwig paie double pour ses commandes.",
+l4:"<b>⛽ Fais le plein à temps.</b> Rouler, voler, forer — tout consomme. Bloqué en bas ? Appelle Steve. Steve facture.",
+l5:"<b>🔩 Améliore.</b> Foreuse, réservoir, soute, refroidissement, lampe, coque — et neuf accessoires visibles sur ta machine.",
+l6:"<b>🕳️ Et ensuite : plus profond.</b> À travers des bandes de roche dure, entre poches de gaz et magma, vers le Vide. Tout en bas attend quelque chose que grand-père n'a jamais expliqué.",
+h_chars:"Les trois de la ferme",
+c1:"La ferme est à lui — les dettes aussi. Donne des missions, paie bien, parle trop du bon vieux temps.",
+c2:"Visse, soude, remorque. Rien de gratuit. Ses factures sont légendaires.",
+c3:"Aurait dû être à la retraite. Vend le carburant au prix du jour en grognant. La ration de secours est offerte — ne le répète pas.",
+dig:"<b style='color:var(--acc)'>Ta machine grandit avec toi.</b><br>Chaque accessoire acheté se voit sur le véhicule : antenne radar, bras magnétique, parachute, galerie de toit, ressorts, bouclier thermique — jusqu'à ce que le vieux bulldozer ressemble au rêve le plus fou de grand-père.",
+h_fb:"Retours, bugs et idées",fb_type:"C'est à quel sujet ?",fb_o1:"🐛 Bug trouvé",fb_o2:"💡 Idée / amélioration",fb_o3:"❤️ Juste un compliment",
+fb_msg:"Ton message",fb_send:"Envoyer",
+fb_hint:"Ouvre ton logiciel mail avec un message prêt pour info@janismeyer.de — cette page n'enregistre aucune donnée.",ft_ds:"Confidentialité (DE)"}
+};
+const DE={};document.querySelectorAll("[data-i]").forEach(el=>{DE[el.getAttribute("data-i")]=el.innerHTML;});
+function setL(l){
+  document.querySelectorAll("[data-i]").forEach(el=>{
+    const k=el.getAttribute("data-i");
+    el.innerHTML=(l==="de")?DE[k]:((I18N[l]&&I18N[l][k])||DE[k]);
+  });
+  document.documentElement.lang=l;
+  document.querySelectorAll("#langbar button").forEach(b=>b.classList.toggle("act",b.getAttribute("data-l")===l));
+  try{localStorage.setItem("lm-site-lang",l);}catch(e){}
+}
+document.querySelectorAll("#langbar button").forEach(b=>b.onclick=()=>setL(b.getAttribute("data-l")));
+let start="de";
+try{start=localStorage.getItem("lm-site-lang")||((navigator.language||"de").slice(0,2));}catch(e){}
+if(!["de","en","es","fr"].includes(start))start="en";
+setL(start);
+document.getElementById("fbSend").onclick=()=>{
+  const t=document.getElementById("fbType").value,m=document.getElementById("fbMsg").value.trim();
+  if(!m){document.getElementById("fbMsg").focus();return;}
+  const su=encodeURIComponent("[Ludwigs Mine] "+t),bo=encodeURIComponent(m+"\n\n—\nGesendet über ludwigs-mine-site");
+  location.href="mailto:info@janismeyer.de?subject="+su+"&body="+bo;
+};
+</script>
 </body>
 </html>
